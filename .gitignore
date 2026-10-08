@@ -1,1 +1,5 @@
+*.tsbuildinfo
+.env
 /tmp
+dist
+node_modules

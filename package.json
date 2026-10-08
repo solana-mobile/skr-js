@@ -1,0 +1,33 @@
+{
+  "name": "skr-js",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "bun run --filter './packages/*' build",
+    "changeset": "changeset",
+    "check-types": "tsc --noEmit && bun run --filter './packages/*' check-types",
+    "ci": "bun run build && bun run lint && bun run check-types && bun run test",
+    "format": "oxfmt",
+    "lint": "oxlint --deny-warnings && oxfmt --check",
+    "lint:fix": "oxlint --deny-warnings --fix && oxfmt",
+    "prepare": "lefthook install",
+    "publint": "bun run --filter './packages/*' publint",
+    "release": "changeset publish",
+    "test": "bun test",
+    "version": "changeset version && bun run lint:fix"
+  },
+  "devDependencies": {
+    "@changesets/cli": "3.0.3",
+    "@solana/kit": "8.4.0",
+    "@types/bun": "1.4.2",
+    "lefthook": "2.1.16",
+    "oxfmt": "0.71.0",
+    "oxlint": "1.86.0",
+    "publint": "0.3.25",
+    "tsdown": "0.23.0",
+    "typescript": "7.0.2"
+  }
+}
