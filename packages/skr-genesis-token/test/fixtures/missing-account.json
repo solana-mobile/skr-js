@@ -1,0 +1,16 @@
+{
+  "address": "E5kK2JsZEt9E9a6pYKtJ9vgD4FbGmc9cN2P5hSEp3Rk1",
+  "capturedAt": "2026-10-08",
+  "endpoint": "https://api.mainnet-beta.solana.com",
+  "result": {
+    "jsonrpc": "2.0",
+    "result": {
+      "context": {
+        "apiVersion": "4.3.0",
+        "slot": 454692099
+      },
+      "value": null
+    },
+    "id": 1
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "capturedAt": "2026-10-08",
+  "endpoint": "https://api.mainnet-beta.solana.com",
+  "method": "getTokenAccountsByOwner",
+  "params": [
+    "D2ehKLUQApN8ZxcANjwuTJC7bk7BMJn2voofXy17tCrs",
+    {
+      "programId": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+    },
+    {
+      "commitment": "confirmed",
+      "encoding": "jsonParsed"
+    }
+  ],
+  "result": {
+    "jsonrpc": "2.0",
+    "result": {
+      "context": {
+        "slot": 454691507,
+        "apiVersion": "4.3.0-beta.2"
+      },
+      "value": [
+        {
+          "pubkey": "9qLNLNqhYnEJvUU1TqcwQFHkapYacUkRZYqd3chZPCgk",
+          "account": {
+            "lamports": 2136720,
+            "data": {
+              "program": "spl-token-2022",
+              "parsed": {
+                "info": {
+                  "extensions": [
+                    {
+                      "extension": "immutableOwner"
+                    },
+                    {
+                      "extension": "pausableAccount"
+                    },
+                    {
+                      "extension": "transferHookAccount",
+                      "state": {
+                        "transferring": false
+                      }
+                    }
+                  ],
+                  "isNative": false,
+                  "mint": "Xsc9qvGR1efVDFGLrVsmkzv3qi45LTBjeUKSPmx9qEh",
+                  "owner": "D2ehKLUQApN8ZxcANjwuTJC7bk7BMJn2voofXy17tCrs",
+                  "state": "initialized",
+                  "tokenAmount": {
+                    "amount": "0",
+                    "decimals": 8,
+                    "uiAmount": 0,
+                    "uiAmountString": "0"
+                  }
+                },
+                "type": "account"
+              },
+              "space": 179
+            },
+            "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+            "executable": false,
+            "rentEpoch": 18446744073709552000,
+            "space": 179
+          }
+        },
+        {
+          "pubkey": "BLJGXXKnNdZEaXTGqZaaNoZ1UkkbD1dXht8DjVz2eeZV",
+          "account": {
+            "lamports": 2074080,
+            "data": {
+              "program": "spl-token-2022",
+              "parsed": {
+                "info": {
+                  "extensions": [
+                    {
+                      "extension": "immutableOwner"
+                    }
+                  ],
+                  "isNative": false,
+                  "mint": "5mXbkqKz883aufhAsx3p5Z1NcvD2ppZbdTTznM6oUKLj",
+                  "owner": "D2ehKLUQApN8ZxcANjwuTJC7bk7BMJn2voofXy17tCrs",
+                  "state": "frozen",
+                  "tokenAmount": {
+                    "amount": "1",
+                    "decimals": 0,
+                    "uiAmount": 1,
+                    "uiAmountString": "1"
+                  }
+                },
+                "type": "account"
+              },
+              "space": 170
+            },
+            "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+            "executable": false,
+            "rentEpoch": 18446744073709552000,
+            "space": 170
+          }
+        }
+      ]
+    },
+    "id": 1
+  }
+}
