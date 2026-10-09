@@ -1,0 +1,17 @@
+pre-commit:
+  commands:
+    oxfmt:
+      glob: '*.{cjs,cts,js,json,jsonc,md,mjs,mts,ts,yaml,yml}'
+      run: bun x oxfmt {staged_files}
+      stage_fixed: true
+    oxlint:
+      glob: '*.{cjs,cts,js,mjs,mts,ts}'
+      run: bun x oxlint --deny-warnings --fix {staged_files}
+      stage_fixed: true
+
+pre-push:
+  commands:
+    ci:
+      run: bun run ci
+    publint:
+      run: bun run publint

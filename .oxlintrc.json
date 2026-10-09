@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error"
+  },
+  "env": {
+    "es2024": true
+  },
+  "ignorePatterns": ["**/dist/**", "**/test/fixtures/**"],
+  "plugins": ["import", "oxc", "typescript", "unicorn"],
+  "rules": {
+    "eqeqeq": "error",
+    "no-else-return": "error",
+    "no-unused-vars": "error",
+    "sort-keys": ["error", "asc", { "caseSensitive": false, "natural": true }],
+    "typescript/consistent-type-imports": "error"
+  }
+}
