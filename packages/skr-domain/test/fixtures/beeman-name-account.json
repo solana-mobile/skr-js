@@ -1,0 +1,26 @@
+{
+  "address": "52ADjN72dV5q1ktf222M3dmpAwMAanX3CcTgEKfBJGiv",
+  "capturedAt": "2026-10-08",
+  "endpoint": "https://api.mainnet-beta.solana.com",
+  "result": {
+    "jsonrpc": "2.0",
+    "result": {
+      "context": {
+        "apiVersion": "4.3.0",
+        "slot": 454695672
+      },
+      "value": {
+        "data": [
+          "REhYLA+nZ/PQkRssJac6RUW3MEbYZkOSyaLiM38ITowKt0gsuxZTuhfWc0K75JLQOCdMOsbINCQmZEy7d3EOHPihpSyvJkcyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjprmgAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 2282880,
+        "owner": "ALTNSZ46uaAUU7XUV6awvdorLGqAsPwa9shm7h4uP2FK",
+        "rentEpoch": 18446744073709552000,
+        "space": 200
+      }
+    },
+    "id": 1
+  }
+}
