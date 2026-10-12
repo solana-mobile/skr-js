@@ -2,6 +2,7 @@ import { describe, expect, test } from 'bun:test'
 
 import {
   address,
+  getAddressDecoder,
   getAddressEncoder,
   getBase64Decoder,
   getBase64Encoder,
@@ -12,10 +13,13 @@ import {
 } from '@solana/kit'
 
 import { getSkrNftRecordAddress } from '../src/derive.ts'
-import { getPrimarySkrDomain, resolveSkrDomain } from '../src/index.ts'
+import { getPrimarySkrDomain, getSkrDomains, resolveSkrDomain } from '../src/index.ts'
 import { createFakeRpc, type FakeRpc } from './fake-rpc.ts'
 import beemanMainDomain from './fixtures/beeman-main-domain.json'
 import beemanNameAccount from './fixtures/beeman-name-account.json'
+import beemanProgramAccounts from './fixtures/beeman-program-accounts.json'
+import beemanReverseAccounts from './fixtures/beeman-reverse-accounts.json'
+import emptyProgramAccounts from './fixtures/empty-program-accounts.json'
 import missingAccount from './fixtures/missing-account.json'
 
 const BEEMAN_MAIN_DOMAIN = address('EFkEVbebRnZqrmhE4EtNubncEmS5VwtKfbWgegdZq91T')
@@ -221,6 +225,100 @@ describe('getPrimarySkrDomain', () => {
   test('throws a plain Error for a wallet that is not an address', async () => {
     const { calls, rpc } = createRpc()
     await expect(getPrimarySkrDomain(rpc, 'not an address' as Address)).rejects.toThrow(Error)
+    expect(calls).toHaveLength(0)
+  })
+})
+
+type ProgramAccount = (typeof beemanProgramAccounts)['result']['result'][number]
+type ReverseAccount = (typeof beemanReverseAccounts)['result']['result']['value'][number]
+
+const beemanProgramAccount = beemanProgramAccounts.result.result[0] as ProgramAccount
+const beemanReverseAccount = beemanReverseAccounts.result.result.value[0] as ReverseAccount
+
+/** A program account at a synthetic address whose sliced data is `expiresAt`. */
+function programAccount(index: number, expiresAt = 0n): ProgramAccount {
+  return {
+    account: {
+      ...beemanProgramAccount.account,
+      data: [getBase64Decoder().decode(getU64Encoder().encode(expiresAt)), 'base64'],
+    },
+    pubkey: getAddressDecoder().decode(new Uint8Array(32).fill(index)),
+  }
+}
+
+/** The captured beeman.skr reverse account with its label replaced. */
+function reverseAccount(label: string): ReverseAccount {
+  const data = new Uint8Array([
+    ...getBase64Encoder()
+      .encode(beemanReverseAccount.data[0] ?? '')
+      .slice(0, 200),
+    ...getUtf8Encoder().encode(label),
+  ])
+  return { ...beemanReverseAccount, data: [getBase64Decoder().decode(data), 'base64'] }
+}
+
+function createDomainsRpc(
+  programAccounts: ProgramAccount[],
+  reverse: (index: number) => ReverseAccount | null = () => beemanReverseAccount,
+): FakeRpc {
+  let index = 0
+  return createFakeRpc({
+    getMultipleAccounts: ([addresses]) => ({
+      ...beemanReverseAccounts.result.result,
+      value: (addresses as string[]).map(() => reverse(index++)),
+    }),
+    getProgramAccounts: () => programAccounts,
+  })
+}
+
+describe('getSkrDomains', () => {
+  test('returns beeman.skr for its owner with the captured requests', async () => {
+    const { calls, rpc } = createDomainsRpc(beemanProgramAccounts.result.result)
+    await expect(getSkrDomains(rpc, BEEMAN_WALLET)).resolves.toEqual(['beeman.skr'])
+    // The fake transport sees params before kit turns bigints into JSON numbers.
+    const sent = JSON.parse(
+      JSON.stringify(
+        calls.map(({ method, params }) => ({ method, params })),
+        (_, value: unknown) => (typeof value === 'bigint' ? Number(value) : value),
+      ),
+    )
+    expect(sent).toEqual([
+      { method: 'getProgramAccounts', params: beemanProgramAccounts.params },
+      { method: 'getMultipleAccounts', params: beemanReverseAccounts.params },
+    ])
+  })
+
+  test('returns an empty array for a wallet without names', async () => {
+    const { calls, rpc } = createDomainsRpc(emptyProgramAccounts.result.result)
+    await expect(getSkrDomains(rpc, EMPTY_WALLET)).resolves.toEqual([])
+    expect(calls.map((call) => call.method)).toEqual(['getProgramAccounts'])
+  })
+
+  test('leaves out names that expired', async () => {
+    const future = BigInt(Math.floor(Date.now() / 1000)) + 86_400n
+    const { calls, rpc } = createDomainsRpc([programAccount(1, 1n), programAccount(2, future), programAccount(3)])
+    await expect(getSkrDomains(rpc, BEEMAN_WALLET)).resolves.toHaveLength(2)
+    expect(calls[1]?.params[0]).toHaveLength(2)
+  })
+
+  test('reads reverse accounts 100 per request, one after another', async () => {
+    const { calls, rpc } = createDomainsRpc(Array.from({ length: 250 }, (_, index) => programAccount(index)))
+    await getSkrDomains(rpc, BEEMAN_WALLET)
+    expect(calls.slice(1).map((call) => (call.params[0] as unknown[]).length)).toEqual([100, 100, 50])
+  })
+
+  test('sorts the names and skips missing and empty reverse accounts', async () => {
+    const labels = ['carol', null, 'alice', '', 'bob']
+    const { rpc } = createDomainsRpc(
+      labels.map((_, index) => programAccount(index)),
+      (index) => (labels[index] === null ? null : reverseAccount(labels[index] ?? '')),
+    )
+    await expect(getSkrDomains(rpc, BEEMAN_WALLET)).resolves.toEqual(['alice.skr', 'bob.skr', 'carol.skr'])
+  })
+
+  test('throws a plain Error for an owner that is not an address', async () => {
+    const { calls, rpc } = createDomainsRpc([])
+    await expect(getSkrDomains(rpc, 'not an address' as Address)).rejects.toThrow(Error)
     expect(calls).toHaveLength(0)
   })
 })

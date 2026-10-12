@@ -9,6 +9,7 @@ export {
 export { decodeMainDomain, decodeNameRecordHeader } from './decode.ts'
 export { getSkrNameAddress } from './derive.ts'
 export { getPrimarySkrDomain } from './get-primary-skr-domain.ts'
+export { getSkrDomains } from './get-skr-domains.ts'
 export { normalizeSkrName } from './normalize.ts'
 export { resolveSkrDomain } from './resolve-skr-domain.ts'
 export type { MainDomain, NameRecordHeader, SkrDomain, SkrDomainConfig } from './types.ts'
