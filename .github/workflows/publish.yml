@@ -63,15 +63,17 @@ jobs:
       - name: Check packages
         run: bun run publint
 
+      # v2 reads the published packages from the Changesets CLI output file, so git tags and GitHub
+      # releases follow every publish. v1 parsed the CLI output, which Changesets v3 no longer prints.
       - name: Publish to NPM
-        uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1.8.0
+        uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
-          commit: 'chore: update versions'
-          publish: bun run release
-          title: 'chore: update versions'
-          version: bun run version
+          commit-message: 'chore: update versions'
+          github-token: ${{ steps.app-token.outputs.token }}
+          pr-title: 'chore: update versions'
+          publish-script: bun run release
+          version-script: bun run version
         env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           LEFTHOOK: 0
 
   canary:
