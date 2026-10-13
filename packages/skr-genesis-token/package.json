@@ -1,6 +1,6 @@
 {
   "name": "@solana-mobile/skr-genesis-token",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Verify Seeker Genesis Tokens with @solana/kit",
   "keywords": [
     "seeker",

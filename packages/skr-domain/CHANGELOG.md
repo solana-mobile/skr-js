@@ -1,5 +1,11 @@
 # @solana-mobile/skr-domain
 
+## 1.1.1
+
+### Patch Changes
+
+- f5d2e9f: Fix `getSkrDomains` throwing `TypeError: undefined is not a function` on React Native: Hermes has no `Array.prototype.toSorted`.
+
 ## 1.1.0
 
 ### Minor Changes

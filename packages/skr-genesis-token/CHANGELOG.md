@@ -1,5 +1,11 @@
 # @solana-mobile/skr-genesis-token
 
+## 1.0.1
+
+### Patch Changes
+
+- f5d2e9f: Fix `getSeekerGenesisTokens` and `hasSeekerGenesisToken` throwing `TypeError: undefined is not a function` on React Native: Hermes has no `Array.prototype.toSorted`.
+
 ## 1.0.0
 
 ### Major Changes
