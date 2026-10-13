@@ -68,7 +68,7 @@ export async function getSeekerGenesisTokens(
     })
   }
 
-  return tokens.toSorted((a, b) => Number(a.memberNumber - b.memberNumber))
+  return tokens.sort((a, b) => Number(a.memberNumber - b.memberNumber))
 }
 
 /** Returns `true` when `owner` holds at least one Seeker Genesis Token. */
