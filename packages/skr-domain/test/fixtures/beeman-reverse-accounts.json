@@ -1,0 +1,37 @@
+{
+  "capturedAt": "2026-10-12",
+  "endpoint": "https://api.mainnet-beta.solana.com",
+  "method": "getMultipleAccounts",
+  "params": [
+    [
+      "J4ZDgKehcYYz95S4cFkm5wb5uU4PPg14Qo4aHDNvf6uM"
+    ],
+    {
+      "commitment": "confirmed",
+      "encoding": "base64"
+    }
+  ],
+  "result": {
+    "jsonrpc": "2.0",
+    "result": {
+      "context": {
+        "apiVersion": "4.3.0",
+        "slot": 456198734
+      },
+      "value": [
+        {
+          "data": [
+            "REhYLA+nZ/MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADLNyGaxO//RCF0Rl1kGc3U+b+1pe+kjdy1basUzfH67Ms3IZrE7/9EIXRGXWQZzdT5v7Wl76SN3LVtqxTN8frsAAAAAAAAAAAjprmgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABiZWVtYW4=",
+            "base64"
+          ],
+          "executable": false,
+          "lamports": 2324640,
+          "owner": "ALTNSZ46uaAUU7XUV6awvdorLGqAsPwa9shm7h4uP2FK",
+          "rentEpoch": 18446744073709552000,
+          "space": 206
+        }
+      ]
+    },
+    "id": 1
+  }
+}

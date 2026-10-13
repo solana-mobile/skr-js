@@ -14,15 +14,15 @@ const NAME_RECORD_CLASS_OFFSET = 72
 /** Offset of `createdAt`, a `u64` of seconds. */
 const NAME_RECORD_CREATED_AT_OFFSET = 112
 /** Offset of `expiresAt`, a `u64` of seconds. `0` means never. */
-const NAME_RECORD_EXPIRES_AT_OFFSET = 104
+export const NAME_RECORD_EXPIRES_AT_OFFSET = 104
 /** Size of the fixed header, padding included. */
-const NAME_RECORD_HEADER_LENGTH = 200
+export const NAME_RECORD_HEADER_LENGTH = 200
 /** Offset of `nonTransferable`, a `u8` flag. */
 const NAME_RECORD_NON_TRANSFERABLE_OFFSET = 120
 /** Offset of `owner`. */
-const NAME_RECORD_OWNER_OFFSET = 40
+export const NAME_RECORD_OWNER_OFFSET = 40
 /** Offset of `parentName`, right after the 8-byte discriminator. */
-const NAME_RECORD_PARENT_NAME_OFFSET = 8
+export const NAME_RECORD_PARENT_NAME_OFFSET = 8
 
 const addressDecoder = getAddressDecoder()
 const u32Decoder = getU32Decoder()

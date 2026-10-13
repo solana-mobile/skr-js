@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test'
 
 import { address, createSolanaRpc } from '@solana/kit'
 
-import { getPrimarySkrDomain, resolveSkrDomain } from '../src/index.ts'
+import { getPrimarySkrDomain, getSkrDomains, resolveSkrDomain } from '../src/index.ts'
 
 const BEEMAN_NAME_ACCOUNT = address('52ADjN72dV5q1ktf222M3dmpAwMAanX3CcTgEKfBJGiv')
 const BEEMAN_WALLET = address('2c43Cag8oYcLKdSDKde9dj632LpejDAXB6DF32z9Ef7P')
@@ -30,5 +30,9 @@ describe.skipIf(!process.env.SKR_LIVE_TESTS)('mainnet', () => {
 
   test('getPrimarySkrDomain is null for a wallet without a primary name', async () => {
     await expect(getPrimarySkrDomain(rpc, EMPTY_WALLET)).resolves.toBeNull()
+  })
+
+  test('getSkrDomains includes beeman.skr for its owner', async () => {
+    expect(await getSkrDomains(rpc, BEEMAN_WALLET)).toContain('beeman.skr')
   })
 })

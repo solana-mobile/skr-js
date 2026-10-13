@@ -1,0 +1,52 @@
+{
+  "capturedAt": "2026-10-12",
+  "endpoint": "https://api.mainnet-beta.solana.com",
+  "method": "getProgramAccounts",
+  "params": [
+    "ALTNSZ46uaAUU7XUV6awvdorLGqAsPwa9shm7h4uP2FK",
+    {
+      "commitment": "confirmed",
+      "dataSlice": {
+        "length": 8,
+        "offset": 104
+      },
+      "encoding": "base64",
+      "filters": [
+        {
+          "memcmp": {
+            "bytes": "F3A8kuikEiu6k2399oSJ1PWfcJYDHqpwoQ2e8psSDNuF",
+            "encoding": "base58",
+            "offset": 8
+          }
+        },
+        {
+          "memcmp": {
+            "bytes": "2c43Cag8oYcLKdSDKde9dj632LpejDAXB6DF32z9Ef7P",
+            "encoding": "base58",
+            "offset": 40
+          }
+        }
+      ]
+    }
+  ],
+  "result": {
+    "jsonrpc": "2.0",
+    "result": [
+      {
+        "pubkey": "52ADjN72dV5q1ktf222M3dmpAwMAanX3CcTgEKfBJGiv",
+        "account": {
+          "lamports": 2282880,
+          "data": [
+            "AAAAAAAAAAA=",
+            "base64"
+          ],
+          "owner": "ALTNSZ46uaAUU7XUV6awvdorLGqAsPwa9shm7h4uP2FK",
+          "executable": false,
+          "rentEpoch": 18446744073709552000,
+          "space": 200
+        }
+      }
+    ],
+    "id": 1
+  }
+}
