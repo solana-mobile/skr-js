@@ -3,7 +3,7 @@
     "allowImportingTsExtensions": true,
     "declaration": true,
     "isolatedDeclarations": true,
-    "lib": ["ESNext"],
+    "lib": ["ES2022"],
     "module": "Preserve",
     "moduleDetection": "force",
     "moduleResolution": "bundler",

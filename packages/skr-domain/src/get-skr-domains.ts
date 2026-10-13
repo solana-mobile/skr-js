@@ -103,5 +103,5 @@ export async function getSkrDomains(
       }
     }
   }
-  return names.toSorted()
+  return names.sort()
 }
