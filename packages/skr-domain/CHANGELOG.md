@@ -1,5 +1,11 @@
 # @solana-mobile/skr-domain
 
+## 1.1.0
+
+### Minor Changes
+
+- de2e6e3: Add `getSkrDomains`, which returns every live `.skr` name a wallet owns, sorted.
+
 ## 1.0.0
 
 ### Major Changes
