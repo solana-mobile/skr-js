@@ -7,7 +7,7 @@ TypeScript packages for Seeker apps, built on [`@solana/kit`](https://github.com
 | [`@solana-mobile/skr-domain`](packages/skr-domain)               | Resolve `.skr` domains and find a wallet's primary name. |
 | [`@solana-mobile/skr-genesis-token`](packages/skr-genesis-token) | Verify Seeker Genesis Tokens.                            |
 
-API reference: <https://solana-mobile.github.io/skr-js/>
+API reference: <https://solana-mobile.github.io/skr-js/>, also as Markdown for LLMs and agents: <https://solana-mobile.github.io/skr-js/md/packages.md>
 
 ## Development
 

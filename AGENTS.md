@@ -11,7 +11,7 @@ Two npm packages for Seeker apps, built on `@solana/kit`:
 - `bun run lint:fix`: oxlint with fixes, then oxfmt.
 - `bun test`: all tests. `SKR_LIVE_TESTS=1 bun test` also runs the tests that hit mainnet. `SKR_RPC_URL` overrides the endpoint.
 - `bun scripts/capture-fixture.ts account <address>`: capture an account for `test/fixtures/`.
-- `bun run docs:build`: API reference with TypeDoc into `dist/api`, published to GitHub Pages from `main`. Run `bun install --cwd docs` once first; `docs/` pins TypeScript 6 because TypeDoc does not support TypeScript 7.
+- `bun run docs:build`: API reference with TypeDoc into `dist/api`, HTML plus Markdown in `dist/api/md`, published to GitHub Pages from `main`. Run `bun install --cwd docs` once first; `docs/` pins TypeScript 6 because TypeDoc does not support TypeScript 7.
 - `bun changeset`: add a release note. Every PR that changes a package needs one.
 
 ## Conventions
