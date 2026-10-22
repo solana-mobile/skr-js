@@ -1,0 +1,13 @@
+{
+  "name": "skr-js-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "typedoc"
+  },
+  "devDependencies": {
+    "typedoc": "0.28.20",
+    "typedoc-plugin-mdn-links": "5.1.1",
+    "typescript": "6.0.3"
+  }
+}

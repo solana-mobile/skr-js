@@ -1,6 +1,6 @@
 # @solana-mobile/skr-genesis-token
 
-Verify Seeker Genesis Tokens with [`@solana/kit`](https://github.com/anza-xyz/kit). Reads mainnet only.
+Verify Seeker Genesis Tokens with [`@solana/kit`](https://github.com/anza-xyz/kit). Reads mainnet only. [API reference](https://solana-mobile.github.io/skr-js/modules/_solana-mobile_skr-genesis-token.html).
 
 ```sh
 npm install @solana-mobile/skr-genesis-token @solana/kit
