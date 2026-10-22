@@ -1,12 +1,21 @@
 {
   "$schema": "https://typedoc.org/schema.json",
   "customFooterHtml": "Generated from the <code>main</code> branch of <a href=\"https://github.com/solana-mobile/skr-js\">solana-mobile/skr-js</a>.",
-  "entryPoints": ["../packages/*"],
   "entryPointStrategy": "packages",
+  "entryPoints": ["../packages/*"],
   "hostedBaseUrl": "https://solana-mobile.github.io/skr-js/",
   "includeVersion": true,
   "name": "skr-js",
-  "out": "../dist/api",
+  "outputs": [
+    {
+      "name": "html",
+      "path": "../dist/api"
+    },
+    {
+      "name": "markdown",
+      "path": "../dist/api/md"
+    }
+  ],
   "packageOptions": {
     "basePath": "../..",
     "disableGit": true,
@@ -20,7 +29,7 @@
     "sourceLinkTemplate": "https://github.com/solana-mobile/skr-js/blob/{gitRevision}/{path}#L{line}"
   },
   "packagesRequiringDocumentation": ["@solana-mobile/skr-domain", "@solana-mobile/skr-genesis-token"],
-  "plugin": ["typedoc-plugin-mdn-links"],
+  "plugin": ["typedoc-plugin-markdown", "typedoc-plugin-mdn-links"],
   "readme": "../README.md",
   "treatWarningsAsErrors": true,
   "validation": {
