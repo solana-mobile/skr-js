@@ -10,6 +10,7 @@
     "changeset": "changeset",
     "check-types": "tsc --noEmit && bun run --filter './packages/*' check-types",
     "ci": "bun run build && bun run lint && bun run check-types && bun run test",
+    "docs:build": "bun run --cwd docs build",
     "format": "oxfmt",
     "lint": "oxlint --deny-warnings && oxfmt --check",
     "lint:fix": "oxlint --deny-warnings --fix && oxfmt",

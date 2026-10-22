@@ -1,6 +1,6 @@
 # @solana-mobile/skr-domain
 
-Resolve `.skr` domains with [`@solana/kit`](https://github.com/anza-xyz/kit). Reads mainnet only.
+Resolve `.skr` domains with [`@solana/kit`](https://github.com/anza-xyz/kit). Reads mainnet only. [API reference](https://solana-mobile.github.io/skr-js/modules/_solana-mobile_skr-domain.html).
 
 ```sh
 npm install @solana-mobile/skr-domain @solana/kit
