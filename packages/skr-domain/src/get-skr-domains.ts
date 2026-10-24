@@ -1,7 +1,5 @@
 import {
-  getAddressEncoder,
   getBase64Encoder,
-  getProgramDerivedAddress,
   getU64Decoder,
   getUtf8Decoder,
   type Address,
@@ -12,30 +10,18 @@ import {
 } from '@solana/kit'
 
 import { assertAddressInput } from './assert.ts'
-import { ANS_PROGRAM_ADDRESS, SKR_PARENT, SKR_TLD_HOUSE } from './constants.ts'
+import { ANS_PROGRAM_ADDRESS, SKR_PARENT } from './constants.ts'
 import {
   NAME_RECORD_EXPIRES_AT_OFFSET,
   NAME_RECORD_HEADER_LENGTH,
   NAME_RECORD_OWNER_OFFSET,
   NAME_RECORD_PARENT_NAME_OFFSET,
 } from './decode.ts'
-import { hashName } from './derive.ts'
+import { getSkrReverseAddress } from './derive.ts'
 import type { SkrDomainConfig } from './types.ts'
 
 /** Most accounts a single `getMultipleAccounts` request accepts. */
 const MAX_MULTIPLE_ACCOUNTS = 100
-/** Seed of a reverse-lookup account: 32 zero bytes in place of a parent. */
-const NO_PARENT = new Uint8Array(32)
-
-/** Reverse-lookup account of a `.skr` name account, which stores the name's label. */
-async function getSkrReverseAddress(nameAccount: Address): Promise<Address> {
-  const [reverse] = await getProgramDerivedAddress({
-    programAddress: ANS_PROGRAM_ADDRESS,
-    seeds: [await hashName(nameAccount), getAddressEncoder().encode(SKR_TLD_HOUSE), NO_PARENT],
-  })
-  return reverse
-}
-
 /**
  * Returns every live `.skr` name `owner` holds as `'alice.skr'`, sorted. A name whose reverse-lookup
  * account is missing or has no label is skipped, so an empty array does not prove the wallet holds

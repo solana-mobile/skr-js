@@ -53,6 +53,15 @@ export async function getSkrNameAddress(name: string): Promise<Address> {
   return getNameAddress(normalizeSkrName(name), SKR_PARENT)
 }
 
+/** Reverse-lookup account of a `.skr` name account, which stores the name's label. */
+export async function getSkrReverseAddress(nameAccount: Address): Promise<Address> {
+  const [reverse] = await getProgramDerivedAddress({
+    programAddress: ANS_PROGRAM_ADDRESS,
+    seeds: [await hashName(nameAccount), addressEncoder.encode(SKR_TLD_HOUSE), NO_PARENT],
+  })
+  return reverse
+}
+
 /** Name House account of the `.skr` TLD, which owns the NFT records of wrapped `.skr` names. */
 export async function getSkrNameHouseAddress(): Promise<Address> {
   const [nameHouse] = await getProgramDerivedAddress({

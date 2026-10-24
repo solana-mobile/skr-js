@@ -50,6 +50,18 @@ A wallet picks its primary name once, which creates a `MainDomain` account under
 
 To show a name for a wallet, use `getPrimarySkrDomain` first, then the first name from `getSkrDomains`, then a truncated address. The list is not a trustworthy identity: anyone can send a `.skr` name to any wallet, so a stranger can choose which label a wallet without a primary name shows. Sorting keeps that label from changing between calls; it does not make it trustworthy. Only the primary name is a choice the wallet made.
 
+### Set or unset a wallet's primary name
+
+```ts
+import { getSetPrimarySkrDomainInstruction, getUnsetPrimarySkrDomainInstruction } from '@solana-mobile/skr-domain'
+
+const set = await getSetPrimarySkrDomainInstruction({ name: 'beeman.skr', owner: wallet })
+const unset = await getUnsetPrimarySkrDomainInstruction({ owner: wallet })
+// Add one to a transaction message that `wallet` signs and pays for, then send it.
+```
+
+`getSetPrimarySkrDomainInstruction` builds the TLD House instruction that makes a name the wallet's primary name, the one `getPrimarySkrDomain` returns. It derives every account offline. The program rejects the transaction unless `owner` owns the name, so resolve the name first and compare its owner. The first call creates the wallet's `MainDomain` account for about 0.0015 SOL of rent; later calls overwrite it. `getUnsetPrimarySkrDomainInstruction` closes that account and returns the rent to the wallet. A wallet has one `MainDomain` account across every AllDomains TLD, so both replace or remove a primary name under another TLD too. Pass a kit `TransactionSigner` as `owner` and `signTransactionMessageWithSigners` picks it up; pass an `Address` when another layer, such as a mobile wallet, signs.
+
 ### Derive a name address offline
 
 ```ts
