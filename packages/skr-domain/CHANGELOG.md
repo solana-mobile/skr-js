@@ -1,5 +1,15 @@
 # @solana-mobile/skr-domain
 
+## 1.2.0
+
+### Minor Changes
+
+- f42f4a1: Add `getSetPrimarySkrDomainInstruction` and `getUnsetPrimarySkrDomainInstruction`, which build the instructions that set and remove a wallet's primary `.skr` name.
+
+### Patch Changes
+
+- 3234e70: Link the README to the generated API reference.
+
 ## 1.1.1
 
 ### Patch Changes
