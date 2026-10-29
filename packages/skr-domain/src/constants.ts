@@ -15,5 +15,8 @@ export const SKR_PARENT: Address = address('F3A8kuikEiu6k2399oSJ1PWfcJYDHqpwoQ2e
 /** TLD House account of the `.skr` top-level domain. */
 export const SKR_TLD_HOUSE: Address = address('4RKP4BEMu5sXBfXSH7xN2owtQrnAJvhhwtBBmj9JEYkA')
 
+/** `TldState` account of the TLD House program, read by every instruction that sets a primary name. */
+export const TLD_HOUSE_STATE: Address = address('VmmhRjr64KbpTZpgmeiVSWmR8H8RyqgigF1XQf8AvET')
+
 /** AllDomains TLD House program, which owns TLD and main-domain accounts. */
 export const TLD_HOUSE_PROGRAM_ADDRESS: Address = address('TLDHkysf5pCnKsVA4gXpNvmy7psXLPEu4LAdDJthT9S')
