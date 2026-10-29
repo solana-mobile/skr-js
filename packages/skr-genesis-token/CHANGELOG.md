@@ -1,5 +1,11 @@
 # @solana-mobile/skr-genesis-token
 
+## 1.0.2
+
+### Patch Changes
+
+- 3234e70: Link the README to the generated API reference.
+
 ## 1.0.1
 
 ### Patch Changes
